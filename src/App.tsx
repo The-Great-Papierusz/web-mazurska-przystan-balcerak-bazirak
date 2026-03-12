@@ -40,7 +40,7 @@ function App() {
         <p className="biggerLetters">Płatność</p>
 
         <label>
-          <input type="radio" name="payment" />
+          <input type="radio"  name="payment" />
           Karta
         </label>
 
