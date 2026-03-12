@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="app-container">
+
+      <h1>Kalkulator wynajmu sprzętu</h1>
+
+      <div className="form-container">
+
+        <label className="biggerLetters">Imię</label>
+        <input type="text" />
+
+        <label className="biggerLetters">Sprzęt</label>
+        <select>
+          <option>Kajak (20zł/h)</option>
+          <option>Rower wodny (35zł/h)</option>
+          <option>Omega (150zł/h)</option>
+        </select>
+
+
+        <label className="biggerLetters">Godziny</label>
+        <input
+          type="range"
+          min="1"
+          max="8"
+        />
+
+        <label>
+          <input type="checkbox" />
+          Kapok dla dziecka (+5zł)
+        </label>
+
+        <label>
+          <input type="checkbox" />
+          Instruktor (+50zł/h)
+        </label>
+
+        <p className="biggerLetters">Płatność</p>
+
+        <label>
+          <input type="radio" name="payment" />
+          Karta
+        </label>
+
+        <label>
+          <input type="radio" name="payment" />
+          BLIK
+        </label>
+
+        <label>
+          <input type="checkbox" />
+          Akceptuję regulamin
+        </label>
+
+        <p>Cena zostanie obliczona po stronie serwera</p>
+
+        <button>
+          Zarezerwuj
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
