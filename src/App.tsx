@@ -1,5 +1,5 @@
 import "./App.css";
-import {useState} from "react";
+import {type SyntheticEvent, useState} from "react";
 
 function App() {
 
@@ -10,6 +10,10 @@ function App() {
   const [instructorCheckBox, setInstructorCheckBox] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<string>();
   const [statuteCheckBox, setStatuteCheckBox] = useState<boolean>(false);
+
+  function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
+    console.log(event.target);
+  }
 
   function handleNameInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setNameInput(e.target.value);
@@ -44,10 +48,14 @@ function App() {
   function handleStatuteCheckBoxChange(e: React.ChangeEvent<HTMLInputElement>) {
     setStatuteCheckBox(e.target.checked);
     console.log(e.target.checked);
+
   }
+
+
 
   return (
     <div className="app-container">
+      <form onSubmit={handleSubmit}>
 
       <h1>Kalkulator wynajmu sprzętu</h1>
 
@@ -64,7 +72,7 @@ function App() {
         </select>
 
 
-        <label className="biggerLetters">Godziny</label>
+        <label className="biggerLetters">Godziny: {timeRange}</label>
         <input
           type="range"
           min="1"
@@ -101,13 +109,14 @@ function App() {
           Akceptuję regulamin
         </label>
 
-        <p>Cena zostanie obliczona po stronie serwera</p>
+        <p className="finalPrice">Cena zostanie obliczona po stronie serwera</p>
 
-        <button>
+        <button type="submit">
           Zarezerwuj
         </button>
 
       </div>
+      </form>
     </div>
   );
 }
