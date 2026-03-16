@@ -12,6 +12,7 @@ function App() {
   const [statuteCheckBox, setStatuteCheckBox] = useState<boolean>(false);
 
   const [price, setPrice] = useState<number>(0);
+  const [patentVisibility, setPatentVisibility] = useState<string>("none");
 
   function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     console.log(event.target);
@@ -27,6 +28,11 @@ function App() {
     console.log(e.target.value);
 
     priceCalculate(e.target.value, timeRange, lsuitCheckBox, instructorCheckBox);
+    if(e.target.value == "omega")
+    {
+      setPatentVisibility("inherit")
+    }
+    else{setPatentVisibility("none")}
   }
 
   function handleTimeRangeChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -98,6 +104,7 @@ function App() {
           <option value="rowerWodny">Rower wodny (35zł/h)</option>
           <option value="omega">Omega (150zł/h)</option>
         </select>
+        <p style={{display: patentVisibility, color: "red"}}> Wymagany jest patent przy użyciu żaglówce!</p>
 
 
         <label className="biggerLetters">Godziny: {timeRange}</label>
@@ -138,7 +145,7 @@ function App() {
         </label>
 
         <p className="priceNotice">Cena zostanie obliczona po stronie serwera</p>
-        <p className="thePrice">OSTATECZNA CENA: {price}zł</p>
+        <p className="thePrice" >OSTATECZNA CENA: {price}zł</p>
 
         <button type="submit">
           Zarezerwuj
