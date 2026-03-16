@@ -11,6 +11,8 @@ function App() {
   const [paymentMethod, setPaymentMethod] = useState<string>();
   const [statuteCheckBox, setStatuteCheckBox] = useState<boolean>(false);
 
+  const [price, setPrice] = useState<number>(0);
+
   function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     console.log(event.target);
   }
@@ -23,21 +25,29 @@ function App() {
   function handleRideSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
     setRideSelect(e.target.value);
     console.log(e.target.value);
+
+    priceCalculate(e.target.value, timeRange, lsuitCheckBox, instructorCheckBox);
   }
 
   function handleTimeRangeChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTimeRange(e.target.value);
     console.log(e.target.value);
+
+    priceCalculate(rideSelect, e.target.value, lsuitCheckBox, instructorCheckBox);
   }
 
   function handleLsuitCheckBoxChange(e: React.ChangeEvent<HTMLInputElement>) {
     setLsuitCheckBox(e.target.checked);
     console.log(e.target.checked);
+
+    priceCalculate(rideSelect, timeRange, e.target.checked, instructorCheckBox);
   }
 
   function handleInstructorCheckBoxChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInstructorCheckBox(e.target.checked);
     console.log(e.target.checked);
+
+    priceCalculate(rideSelect, timeRange, lsuitCheckBox, e.target.checked);
   }
 
   function handlePaymentMethodChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -51,7 +61,25 @@ function App() {
 
   }
 
-
+  function priceCalculate(selectionRide :string ,timeCost :string,kapokCheck : boolean, instructorCheck :boolean) {
+    let ridePrice: number;
+    let cashMoney: number = 0;
+    switch (selectionRide) {
+      case 'kajak': ridePrice = 20; break;
+      case 'rowerWodny': ridePrice = 35; break;
+      case 'omega': ridePrice = 150; break;
+      default: ridePrice = 1; break;
+    }
+    cashMoney = parseInt(timeCost) * ridePrice;
+    if(kapokCheck){
+      cashMoney += 5;
+    }
+    if(instructorCheck){
+      cashMoney += 50 * parseInt(timeCost);
+    }
+    setPrice(cashMoney);
+    console.log(price);
+  }
 
   return (
     <div className="app-container">
@@ -109,7 +137,8 @@ function App() {
           Akceptuję regulamin
         </label>
 
-        <p className="finalPrice">Cena zostanie obliczona po stronie serwera</p>
+        <p className="priceNotice">Cena zostanie obliczona po stronie serwera</p>
+        <p className="thePrice">OSTATECZNA CENA: {price}zł</p>
 
         <button type="submit">
           Zarezerwuj
