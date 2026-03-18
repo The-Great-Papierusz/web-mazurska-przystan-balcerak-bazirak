@@ -1,5 +1,6 @@
 import "./App.css";
 import {type SyntheticEvent, useState} from "react";
+import * as React from "react";
 
 function App() {
 
@@ -14,6 +15,9 @@ function App() {
   const [price, setPrice] = useState<number>(0);
   const [patentVisibility, setPatentVisibility] = useState<string>("none");
 
+  const [submitDisable, setSubmitDisable] = useState<boolean>(true);
+  const [submitBackground, setSubmitBackground] = useState<string>("dimgray");
+
   function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     console.log(event.target);
   }
@@ -21,6 +25,7 @@ function App() {
   function handleNameInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setNameInput(e.target.value);
     console.log(e.target.value);
+    disableButtonCheck(statuteCheckBox, e.target.value, paymentMethod);
   }
 
   function handleRideSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -59,17 +64,19 @@ function App() {
   function handlePaymentMethodChange(e: React.ChangeEvent<HTMLInputElement>) {
     setPaymentMethod(e.currentTarget.value);
     console.log(e.target.value);
+    disableButtonCheck(statuteCheckBox, nameInput ,e.target.value);
   }
 
   function handleStatuteCheckBoxChange(e: React.ChangeEvent<HTMLInputElement>) {
     setStatuteCheckBox(e.target.checked);
     console.log(e.target.checked);
+    disableButtonCheck(e.target.checked, nameInput, paymentMethod);
 
   }
 
   function priceCalculate(selectionRide :string ,timeCost :string,kapokCheck : boolean, instructorCheck :boolean) {
     let ridePrice: number;
-    let cashMoney: number = 0;
+    let cashMoney: number;
     switch (selectionRide) {
       case 'kajak': ridePrice = 20; break;
       case 'rowerWodny': ridePrice = 35; break;
@@ -85,6 +92,22 @@ function App() {
     }
     setPrice(cashMoney);
     console.log(price);
+  }
+
+  function disableButtonCheck(statuteCheck:boolean,nameCheck:string | undefined, paymentCheck:string | undefined) {
+    if(statuteCheck && nameCheck != null && nameCheck != "" && paymentCheck != undefined){
+      setSubmitDisable(false);
+      setSubmitBackground("lightgreen");
+    }
+    else{
+      setSubmitDisable(true);
+      setSubmitBackground("dimgray");
+    }
+  }
+
+  function submitAlert()
+  {
+    window.alert(`Dziekujemy bardzo ${nameInput}!`);
   }
 
   return (
@@ -147,7 +170,7 @@ function App() {
         <p className="priceNotice">Cena zostanie obliczona po stronie serwera</p>
         <p className="thePrice" >OSTATECZNA CENA: {price}zł</p>
 
-        <button type="submit">
+        <button type="submit" disabled={submitDisable} style={{background: submitBackground}} onClick={submitAlert}>
           Zarezerwuj
         </button>
 
