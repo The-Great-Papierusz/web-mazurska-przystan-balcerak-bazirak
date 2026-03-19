@@ -13,8 +13,8 @@ function App() {
   const [statuteCheckBox, setStatuteCheckBox] = useState<boolean>(false);
 
   const [price, setPrice] = useState<number>(0);
-  const [patentVisibility, setPatentVisibility] = useState<string>("none");
 
+  const [patentVisibility, setPatentVisibility] = useState<string>("none");
   const [submitDisable, setSubmitDisable] = useState<boolean>(true);
   const [submitBackground, setSubmitBackground] = useState<string>("dimgray");
 
@@ -127,7 +127,7 @@ function App() {
           <option value="rowerWodny">Rower wodny (35zł/h)</option>
           <option value="omega">Omega (150zł/h)</option>
         </select>
-        <p style={{display: patentVisibility, color: "red"}}> Wymagany jest patent przy użyciu żaglówce!</p>
+        <p className="Patent" style={{display: patentVisibility, color: "red"}}> Wymagany jest patent przy użyciu żaglówce!</p>
 
 
         <label className="biggerLetters">Godziny: {timeRange}</label>
