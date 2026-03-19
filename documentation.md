@@ -82,21 +82,24 @@ App.tsx jest podielony w następny sposób:
 ## 5. Layout i Stylizacja (`Flexbox`)
 (Opisz, jakich właściwości `Flexbox` użyliście, aby formularz był responsywny i wyśrodkowany.
 Wymień co najmniej 3 właściwości CSS).
-1. `display: ...` - (opis zastosowania)
-2. `...` - (opis zastosowania)
-3. `...` - (opis zastosowania)
+1. `display: flex` - ładnie układa elementy i je wyrównuje
+2. `flex-direction: column` - ładnie ustawia elementy jeden pod drugim
+3. `justify-content: center` - wyrównuje elementy w poziomie
 ---
 ## 6. Wnioski z realizacji projektu (SDLC)
 (Krótka autorefleksja zespołu).
 * **Co było najtrudniejsze?** 
   * Mikołaj: Zmiana ceny wraz z wyborami
+  * Bartek: Ustawienie w css aby ładnie wyglądało
 * **Czego nowego się nauczyliście?**
   * Mikołaj: Fajne sposoby do zastosowania useState
+  * Bartek: Jak ładnie ułożyć wygląd strony
 * **Co byście zmienili, gdybyście mieli więcej czasu?**
   * Mikołaj: "Interaktywność" strony, aby nie była taka statyczna bardzo
+  * Bartek: Upiększyłbym wygląd, dodał obrazki
 ---
 ## 7. Checklisty
 - [x] Aplikacja uruchamia się bez błędów (npm start).
 - [x] Konsola przeglądarki jest czysta (brak "red errors").
 - [x] Wszystkie commity są widoczne na kanale #github-feed.
-- [ ] Pull Requesty zostały zaakceptowane przez partnera.
+- [x] Pull Requesty zostały zaakceptowane przez partnera.

@@ -167,7 +167,6 @@ function App() {
           Akceptuję regulamin
         </label>
 
-        <p className="priceNotice">Cena zostanie obliczona po stronie serwera</p>
         <p className="thePrice" >OSTATECZNA CENA: {price}zł</p>
 
         <button type="submit" disabled={submitDisable} style={{background: submitBackground}} onClick={submitAlert}>
