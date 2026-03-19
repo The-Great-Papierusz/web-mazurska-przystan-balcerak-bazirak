@@ -127,7 +127,7 @@ function App() {
           <option value="rowerWodny">Rower wodny (35zł/h)</option>
           <option value="omega">Omega (150zł/h)</option>
         </select>
-        <p className="Patent" style={{display: patentVisibility, color: "red"}}> Wymagany jest patent przy użyciu żaglówce!</p>
+        <p className="Patent" style={{display: patentVisibility, color: "red"}}> Do wynajęcia Omegi wymagany jest patent!</p>
 
 
         <label className="biggerLetters">Godziny: {timeRange}</label>
